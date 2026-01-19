@@ -15,9 +15,18 @@ msbuild Translations\Translations\Translations.csproj /p:Configuration=Debug
 nuget restore Translations\Translations.sln
 ```
 
+## Database Setup
+
+```bash
+# Deploy schema to SQL Server
+sqlcmd -S <server> -U <user> -P <password> -i Database\CreateSchema.sql
+```
+
+The schema script creates the `Translations` database with all tables, foreign keys, indexes, and a default admin user (`admin@translations.local` / `admin123`).
+
 ## Architecture
 
-This is an ASP.NET Web Forms application (.NET Framework 4.5) for managing translations across multiple countries and languages. It uses Entity Framework 6 with Database-First approach.
+This is an ASP.NET Web Forms application (.NET Framework 4.8) for managing translations across multiple countries and languages. It uses Entity Framework 6.5.1 with Database-First approach.
 
 ### Project Structure
 
@@ -41,4 +50,4 @@ The database schema includes: `Country`, `CountryLanguage`, `Language`, `Transla
 
 ### Database Connection
 
-Connection string is defined in `Web.config` under the name "Entities" using Entity Framework connection string format pointing to SQL Server.
+Connection string is defined in `Web.config` and `App.config` files under the name "Entities" using Entity Framework connection string format pointing to SQL Server.
