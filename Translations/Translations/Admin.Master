@@ -177,6 +177,82 @@
         #container { max-width: 100%; margin: 0; padding: 0; }
         .five_sixth, .sidebar_right { width: 100% !important; float: none !important; }
         #copyright { display: none !important; }
+        /* Make GridViews full width */
+        table[id*="gv"], .GridView, [id*="GridView"] {
+            width: 100% !important;
+        }
+        .main-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .main-container table th {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .main-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .main-container table tr:hover {
+            background: #f8fafc;
+        }
+        /* Style buttons in grid */
+        .main-container table a[id*="lbt"], .main-container table a[id*="lbtn"] {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 2px;
+        }
+        .main-container table a[id*="lbtEdit"], .main-container table a[id*="Edit"] {
+            background: #3b82f6;
+            color: white !important;
+        }
+        .main-container table a[id*="lbtnDelete"], .main-container table a[id*="Delete"] {
+            background: #ef4444;
+            color: white !important;
+        }
+        /* Form buttons */
+        input[type="submit"], .button_add, .Button_add {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+        }
+        input[type="submit"]:hover, .button_add:hover, .Button_add:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        /* Form inputs */
+        input[type="text"], input[type="password"], select, textarea {
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+        /* Card-like sections */
+        .sidebar aside, .form-bg {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
