@@ -88,3 +88,6 @@ StyleCopReport.xml
 *.scc
 .claude/
 nuget.exe
+
+# Terminal Paste Image folder
+.cp-images/

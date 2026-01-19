@@ -8,8 +8,8 @@
      <link rel="stylesheet" href="css/newstyle.css" type="text/css">
 <link href="css/mediaqueries.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body>
-    <div class="wrapper6 row3" >
+<body style="background-color: #FFFFFF;">
+    <div class="wrapper6 row3" style="background-color: #FFFFFF; width: 100%;">
         <div id="container">
             <!-- ################################################################################################ -->
             <div class="responsive-container">
