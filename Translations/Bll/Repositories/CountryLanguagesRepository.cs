@@ -86,5 +86,31 @@ namespace Bll.Repositories
         {
             return DbContext.Languages.Where(m => m.Id == id).FirstOrDefault();
         }
+
+        public CountryLanguage GetEnglishUK()
+        {
+            // Find English language and UK country, then get the CountryLanguage
+            var englishLang = DbContext.Languages.Where(l => l.Code == "en" && l.Deleted == null).FirstOrDefault();
+            var ukCountry = DbContext.Countries.Where(c => c.ISOCode == "GB" && c.Deleted == null).FirstOrDefault();
+
+            if (englishLang != null && ukCountry != null)
+            {
+                return DbContext.CountryLanguages.Where(cl => cl.LanguageId == englishLang.Id && cl.CountryId == ukCountry.Id && cl.Deleted == null).FirstOrDefault();
+            }
+            return null;
+        }
+
+        public CountryLanguage GetEnglishUS()
+        {
+            // Find English language and US country, then get the CountryLanguage
+            var englishLang = DbContext.Languages.Where(l => l.Code == "en" && l.Deleted == null).FirstOrDefault();
+            var usCountry = DbContext.Countries.Where(c => c.ISOCode == "US" && c.Deleted == null).FirstOrDefault();
+
+            if (englishLang != null && usCountry != null)
+            {
+                return DbContext.CountryLanguages.Where(cl => cl.LanguageId == englishLang.Id && cl.CountryId == usCountry.Id && cl.Deleted == null).FirstOrDefault();
+            }
+            return null;
+        }
     }
 }

@@ -117,19 +117,35 @@ namespace Bll.Repositories
 
         public void UpdateTranslationForUKAndUS(long keyId, long translatorId, string value, string comments)
         {
-            Translation tempUK = GetNonDeletedByTranslationKeyIdAndCountryLanguageID(keyId,1);
-            tempUK.TranslatorId = translatorId;
-            tempUK.Value = value;
-            tempUK.Comments = comments;
-            tempUK.Active = true;
-            tempUK.Translated = DateTime.Now;
+            // Get UK English CountryLanguage (look for English language with UK country)
+            var ukCountryLanguage = CountryLanguageRepo.GetEnglishUK();
+            if (ukCountryLanguage != null)
+            {
+                Translation tempUK = GetNonDeletedByTranslationKeyIdAndCountryLanguageID(keyId, ukCountryLanguage.Id);
+                if (tempUK != null)
+                {
+                    tempUK.TranslatorId = translatorId;
+                    tempUK.Value = value;
+                    tempUK.Comments = comments;
+                    tempUK.Active = true;
+                    tempUK.Translated = DateTime.Now;
+                }
+            }
 
-            Translation tempUS = GetNonDeletedByTranslationKeyIdAndCountryLanguageID(keyId, 19);
-            tempUS.TranslatorId = translatorId;
-            tempUS.Value = value;
-            tempUS.Comments = comments;
-            tempUS.Active = true;
-            tempUS.Translated = DateTime.Now;
+            // Get US English CountryLanguage (look for English language with US country)
+            var usCountryLanguage = CountryLanguageRepo.GetEnglishUS();
+            if (usCountryLanguage != null)
+            {
+                Translation tempUS = GetNonDeletedByTranslationKeyIdAndCountryLanguageID(keyId, usCountryLanguage.Id);
+                if (tempUS != null)
+                {
+                    tempUS.TranslatorId = translatorId;
+                    tempUS.Value = value;
+                    tempUS.Comments = comments;
+                    tempUS.Active = true;
+                    tempUS.Translated = DateTime.Now;
+                }
+            }
         }
 
         public void RequireTranslation(long translationKeyId)
@@ -138,10 +154,17 @@ namespace Bll.Repositories
             temp = GetNonDeletedByTranslationKeyId(translationKeyId);
             if (temp != null)
             {
+                // Get UK and US English CountryLanguage IDs to exclude them
+                var ukCountryLanguage = CountryLanguageRepo.GetEnglishUK();
+                var usCountryLanguage = CountryLanguageRepo.GetEnglishUS();
+                long? ukId = ukCountryLanguage?.Id;
+                long? usId = usCountryLanguage?.Id;
+
                 foreach (Translation t in temp)
                 {
-                    if(t.CountryLanguageId!=1 && t.CountryLanguageId!=19)
-                    { 
+                    // Skip UK and US English translations
+                    if (t.CountryLanguageId != ukId && t.CountryLanguageId != usId)
+                    {
                         t.Translated = null;
                     }
                 }
