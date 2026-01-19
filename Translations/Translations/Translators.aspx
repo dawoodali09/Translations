@@ -160,7 +160,6 @@
                                <%-- <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                                 <asp:BoundField DataField="LastName" HeaderText="Last Name" />--%>
                                 <asp:BoundField DataField="EmailAddress" HeaderText="Email" />
-                                <asp:BoundField DataField="Password" HeaderText="Password" />
                                 <asp:BoundField DataField="ContactNo" HeaderText="Contact No" />
                                 <%--<asp:BoundField DataField="Active" HeaderText="Active" />--%>
                                 <asp:BoundField DataField="MobileNumber" HeaderText="Mobile No" />
