@@ -1,0 +1,498 @@
+/*
+Responsive Template Name: RS-1200 Prototype 48
+File: Custom CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+.responsive-container {
+    position: relative;
+    max-width: 1200px;
+    border: 0px solid black;
+}
+
+.dummy {
+    padding-top: 10%; /* forces 1:1 aspect ratio */
+}
+
+.img-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    text-align:center; /* Align center inline elements */
+   /* font: 0/0 a;*/
+}
+
+.img-container:before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.img-container img {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.login_box
+{ 
+	border-radius:11px;
+	background-color:#e2e2e2;
+	border:1px solid #6a674c;
+	
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.55);
+	-moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.55);
+	box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.55);
+padding-bottom:20px;
+ }
+ 
+ .login_box h1
+ {
+	 font-family:"CaviarDreamsBold",Arial,Helvetica,sans-serif;
+	 font-size:36px;
+	 font-weight:normal;
+	 color:#000;
+	 
+ }
+ 
+ .login_box hr
+ {
+	 margin:10px 30px;
+	
+	 
+ }
+ 
+ label
+ {
+	 font-family: Arial, Helvetica, sans-serif;
+	 font-size:18px;
+	 color:#333;
+	 font-weight:normal;
+	 text-align:right;
+	 padding-right:10px;
+	 float:left;
+	 
+	 
+ }
+ 
+ .form_wraper{width: 50%; margin: 0px auto;}
+ .form_btn{ width:32%; margin:0 auto;}
+.left_col {
+    width:28%;
+    float:left;
+    margin-top:33px;
+}
+.right_col {
+    width:72%;
+    float:left;
+      margin-top:33px;
+}
+ .circle {
+    width: 21px;
+    height: 21px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #c8c4a5;
+}
+
+ .circle2 {
+    width: 18px;
+    height: 18px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #6a674c;
+    margin-left:25px;
+    margin-top:12px;
+}
+.nav_bg
+{
+	border-radius:10px; 
+	/*background-color:#3d3d3d;*/
+    background-color:#fafafa;
+	margin:1px !important;
+	padding:10px 5px 30px 5px;
+
+    border-width: 1px 0 1px 1px;
+border-style: solid;
+border-color: #dadada #d2d2d2 #c5c5c5;
+}
+
+.box_right{
+	border-radius:7px; 
+	background-color:#d7d7d7;
+	margin:0px 20px 10px 20px;
+	padding:10px 20px 30px 5px;
+}
+
+.form_wraper_trs{width: 40%; margin: 0px auto;}
+ .form_btn{ width:100%; margin:0 auto;}
+ .form_wraper_trs label{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:30px;
+     font-weight:bold;
+ }
+ .form_wraper_trs-btn
+ {
+    
+     margin:40px 30px 20px 90px;
+ }
+ .input_inside{
+
+     border-radius:5px;
+      
+     margin-top:10px;
+ }
+ .inputprop{
+     float:right;
+     width:60%;
+     margin-top:25px;
+     border-radius:5px;
+ }
+
+ .inputprop CheckBox{
+     
+     width:auto;
+   
+ }
+
+ .inputprop-key{
+     float:right;
+     width:60%;
+     margin-bottom:20px;
+     margin-right:16px;
+    
+     border-radius:5px;
+ }
+.dropdown_pro {
+    display: block;
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #3591cd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 33px;
+     margin-top:10px;
+     margin-right:53px;
+      border-radius:5px;
+}
+.dropdown_pro2 {
+    display: block;
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #3591cd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 33px;
+     margin-top:0px;
+     margin-right:53px;
+      border-radius:5px;
+}
+
+.left_center{ width:100%; text-align:center; }
+.form-bg{padding:10px; background-color:#fff; border-radius:5px; margin:20px auto; width:95%;}
+
+
+
+.GridHeader table{width:100%; border-collapse:collapse; table-layout:auto; vertical-align:top; margin-bottom:15px; border:1px solid #CCCCCC;}
+.GridHeader table thead th{font-family:Arial; font-size:11px;color:#FFFFFF; background-color:#666666; border:1px solid #CCCCCC; border-collapse:collapse; text-align:center; table-layout:auto; vertical-align:middle;}
+.GridHeader table tbody td{vertical-align:top; border-collapse:collapse; border-left:1px solid #CCCCCC; border-right:1px solid #CCCCCC;}
+.GridHeader table thead th, table tbody td{padding:5px; border-collapse:collapse; text-align:center; font-weight:normal; font-family:Arial; font-size:12px;  border:1px solid #ccc}
+.GridHeader table tbody tr.light{color:#979797; background-color:#F7F7F7;}
+.GridHeader table tbody tr.dark{color:#979797; background-color:#E8E8E8;}
+
+
+.button_add
+{
+    border-radius:5px;
+    background: #56a3d5; /* Old browsers */
+
+    /*height:15px;*/
+    font-size:12px;
+    padding:6px 20px;
+    margin-top:-4px;
+
+
+}
+    .button_add:hover {
+    background: #3591CD;
+    }
+
+
+
+.countryLang_lable-ti{float:left; width:75px; text-align:left; margin-top:24px;}
+.countryLang_lable-co{float: left; width: 75px; text-align: left; margin-top: 23px;}
+.countryLang_lable-lan{ float:left; width:75px; text-align:left; padding-top:30px;}
+.countryLang_lable-no{ float:left; width:75px; text-align:left; margin-top:28px;}
+.countryLang_lable-ac{float:left; width:75px; text-align:left; margin-top:30px;}
+
+.translation_key_lable-eg{float:left; width:80px; text-align:left; margin-top:30px;}
+.translation_key_lable-com{float:left; width:75px; text-align:left; margin-top:26px;}
+.translation_key_lable-ac{float:left; width:75px; text-align:left; margin-top:36px;}
+
+.translation_lable-tc{float:left; width:100px; text-align:left; margin-top:24px;}
+.translation_lable-eg{float:left; width:100px; text-align:left; margin-top:29px;}
+.translation_lable-tr{float:left; width:100px; text-align:left; margin-top:45px;}
+.translation_lable-co{float:left; width:100px; text-align:left; margin-top:41px;}
+.translation_lable-ac{float:left; width:100px; text-align:left; margin-top:46px;}
+
+
+
+.form_wraper_trs-trans2{width: 40%; margin: 0px auto;}
+ .form_btn{ width:100%; margin:0 auto;}
+ .form_wraper_trs-trans2-label{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:20px;
+     font-weight:bold;
+     width:30%;
+ }
+.form_wraper_trs-trans2-dd {
+    width: 210px;
+    float: right;
+    height:26px;
+}
+
+
+
+.form_wraper_trs-trans2-dd2 {
+    width: 400px;
+    float: left;
+    height:56px;
+    margin-left:-24px;
+}
+
+.form_wraper_trs-trans2-dd3 {
+    width: 400px;
+    float: left;
+    height:26px;
+    margin-left:-24px;
+}
+ .form_wraper_trs-trans2-btn
+ {
+    
+     margin:40px 30px 20px 90px;
+ }
+
+ .form_wraper_trs-trans-label_com{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:24px;
+     font-weight:bold;
+     width:30%;
+ }
+ .form_wraper_trs-trankey-label-tra{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:22px;
+     font-weight:bold;
+     width:30%;
+ }
+  .form_wraper_trs-trankey-label-com{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:72px;
+     font-weight:bold;
+     width:30%;
+ }
+
+  .form_wraper_trs-trankey-label-ac{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:60px;
+     font-weight:bold;
+     width:30%;
+ }
+ .form_wraper_trs-trans2-label-com{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:72px;
+     font-weight:bold;
+     width:30%;
+ }
+ .form_wraper_trs-trans2-label-act{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:81px;
+     font-weight:bold;
+     width:30%;
+ }
+
+ .inputprop-lit{
+     float:right;
+     width:63%;
+     margin-top:18px;
+     text-align:left;
+    
+    
+ }
+
+ .form_wraper_trs-trans2-text{
+    width: 210px;
+    float: right;
+    height:65px;
+}
+
+ .form_wraper_trs-trans2-text2{
+    width: 210px;
+    float: right;
+    height:72px;
+   
+}
+
+ .form_wraper_trs-trans2-text3{
+    width: 400px;
+    float: left;
+    height:130px;
+     margin-left:-24px;
+}
+
+.form_wraper_trs-trans-label_trans{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:138px;
+     font-weight:bold;
+     width:30%;
+ }
+
+.form_wraper_trs-trans-label_com{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:145px;
+     font-weight:bold;
+     width:30%;
+ }
+.form_wraper_trs-trans-label_ac{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:47px;
+     font-weight:bold;
+     width:30%;
+ }
+ .countryLang_lable-ty{float:left; width:75px; text-align:left; margin-top:24px;}
+
+  .form_wraper_trs-trankey-la_eng{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:22px;
+     font-weight:bold;
+     width:30%;
+ }
+   .form_wraper_trs-trankey-la_com{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:72px;
+     font-weight:bold;
+     width:30%;
+ }
+
+    .form_wraper_trs-trankey-la_ac{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:60px;
+     font-weight:bold;
+     width:30%;
+ }
+
+.form_wraper_trs-tcl-la_note{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:26px;
+     font-weight:bold;
+     width:30%;
+ }
+      .form_wraper_trs-tcl-la_ac{
+
+      font-family: Arial, Helvetica, sans-serif;
+	 font-size:12px;
+	 color:#333;
+	 font-weight:normal;
+	
+	 float:left;
+     margin-top:29px;
+     font-weight:bold;
+     width:30%;
+ }

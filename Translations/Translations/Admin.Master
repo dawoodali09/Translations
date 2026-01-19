@@ -1,0 +1,118 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Translations.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<link href="css/main.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="css/newstyle.css" type="text/css">
+<link href="css/mediaqueries.css" rel="stylesheet" type="text/css" media="all">
+<body>
+    <div class="wrapper row1">
+        <div class="full_width" style="height:3px; background-color:#56a3d5"></div>
+        <header id="header" class="full_width clear">
+            <div id="hgroup">
+                <h1>
+                    <img src="images/logos2.png" width="754" height="75"></h1>
+                <h2></h2>
+            </div>
+            <div id="header-contact" style="padding-top: 20px;">
+                <a href="Login.aspx?logoff=true" class="button buttonlogout small " style="float: right; border-radius: 3px;">Log Out</a> <%--//gradient black--%>
+            </div>
+        </header>
+    </div>
+    <div class="wrapper row3">
+        <div id="container">
+            <div class="left_col">
+
+
+
+                <div class="containernav">
+
+                    <ul class="tags blue">
+                        <li id="liTranlator"><a href="Translators.aspx">Translator<span>31</span></a></li>
+                        <li id="liCountry"><a href="Countries.aspx">Countries <span>33</span></a></li>
+                        <li id="liLanguages"><a href="Languages.aspx">Languages <span>65</span></a></li>
+                        <li id="liCountryLang"><a href="CountryLanguages.aspx">Country Language <span>160</span></a></li>
+                        <li id="liTranslatorCountryLanguages"><a href="TranslatorCountyLanguage.aspx">Translator Languages <span>33</span></a></li>
+                        <li id="liTranlationKey"><a href="TranslationKeys.aspx">Translation Key <span>65</span></a></li>
+                        <li id="liTranlation"><a href="Translations.aspx">Translations <span>160</span></a></li>
+                        <li id="liTranslatorTranslations"><a href="TranslatorTranslations.aspx">Translator Translations <span>160</span></a></li>
+
+
+
+
+                    </ul>
+                </div>
+
+
+      <%--            <div id="sidebar_1" class="sidebar ">
+                    <aside>
+                        <!-- ########################################################################################## -->
+                        <div class="nav_bg">
+                            <div class="circle fl_left"><span class="icon-sort-down icon-large" style="margin-left: 6px; font-size:12px; color:#333; position:absolute;"></span></div>
+                            <h2 class="fl_left">Side Navigation</h2>
+                        </div>
+                        <nav>
+                            <ul>
+                                <li runat="server" class="active" id="liTranlator"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Translators.aspx">Translator</a></li>
+                               <li runat="server" id="liCountry"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Countries.aspx">Countries</a></li>
+                               <li runat="server" id="liLanguages"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Languages.aspx">Languages</a></li>
+                                <li runat="server" id="liCountryLang"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="CountryLanguages.aspx">Country Language</a></li>
+                                <li runat="server" id="liTranslatorCountryLanguages"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="TranslatorCountyLanguage.aspx">Translator Languages</a></li>
+                                <li runat="server" id="liTranlationKey"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="TranslationKeys.aspx">Translation Key</a></li>
+                                <li runat="server" id="liTranlation"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Translations.aspx">Translations</a></li>
+                                <li runat="server" id="liTranslatorTranslations"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="TranslatorTranslations.aspx">Translator Translations</a></li>                                
+                                
+                            </ul>
+                        </nav>
+                        <!-- /nav -->
+
+
+
+
+                        <!-- ########################################################################################## -->
+                    </aside>
+                </div>--%>
+            </div>
+            <div class="right_col">
+                <form id="form1" runat="server">
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <div id="container">
+        <div class="wrapper row4">
+            <div id="copyright" class="clear">
+                <p class="fl_left">2014 © www.Translate.cib-pay.com. All rights reserved.</p>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Scripts -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../layout/scripts/jquery-latest.min.js"><\/script>\
+<script src="js/jquery-ui.min.js"><\/script>')</script>
+    <script>jQuery(document).ready(function ($) { $('img').removeAttr('width height'); });</script>
+    <script src="js/jquery-mobilemenu.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>

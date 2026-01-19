@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Translations.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ISONumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISOCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="CountryLanguages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="CountryId" Type="bigint" Nullable="false" />
+          <Property Name="LanguageId" Type="bigint" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="NativeName" Type="nvarchar" MaxLength="999" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="TranslationKeys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="EnglishValue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="TranslatorId" Type="bigint" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Translations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TranslationKeyId" Type="bigint" Nullable="false" />
+          <Property Name="TranslatorId" Type="bigint" />
+          <Property Name="CountryLanguageId" Type="bigint" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Translated" Type="datetime2" Precision="7" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="TranslatorCountryLanguages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TranslatorId" Type="bigint" Nullable="false" />
+          <Property Name="CountryLanguageId" Type="bigint" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Translators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhotoURL" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" />
+        </EntityType>
+        <Association Name="FK_CountryLanguages_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="CountryLanguages" Type="Self.CountryLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CountryLanguages">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryLanguages_Languages">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="1" />
+          <End Role="CountryLanguages" Type="Self.CountryLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CountryLanguages">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslationKeys_Translators">
+          <End Role="Translators" Type="Self.Translators" Multiplicity="1" />
+          <End Role="TranslationKeys" Type="Self.TranslationKeys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslationKeys">
+              <PropertyRef Name="TranslatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translations_CountryLanguages">
+          <End Role="CountryLanguages" Type="Self.CountryLanguages" Multiplicity="0..1" />
+          <End Role="Translations" Type="Self.Translations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLanguages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translations">
+              <PropertyRef Name="CountryLanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translations_TranslationKeys">
+          <End Role="TranslationKeys" Type="Self.TranslationKeys" Multiplicity="1" />
+          <End Role="Translations" Type="Self.Translations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TranslationKeys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translations">
+              <PropertyRef Name="TranslationKeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslatorCountryLanguages_CountryLanguages">
+          <End Role="CountryLanguages" Type="Self.CountryLanguages" Multiplicity="1" />
+          <End Role="TranslatorCountryLanguages" Type="Self.TranslatorCountryLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLanguages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslatorCountryLanguages">
+              <PropertyRef Name="CountryLanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslatorCountryLanguages_Translators">
+          <End Role="Translators" Type="Self.Translators" Multiplicity="1" />
+          <End Role="TranslatorCountryLanguages" Type="Self.TranslatorCountryLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslatorCountryLanguages">
+              <PropertyRef Name="TranslatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TranslationsStoreContainer">
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryLanguages" EntityType="Self.CountryLanguages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranslationKeys" EntityType="Self.TranslationKeys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Translations" EntityType="Self.Translations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranslatorCountryLanguages" EntityType="Self.TranslatorCountryLanguages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Translators" EntityType="Self.Translators" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CountryLanguages_Countries" Association="Self.FK_CountryLanguages_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="CountryLanguages" EntitySet="CountryLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryLanguages_Languages" Association="Self.FK_CountryLanguages_Languages">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="CountryLanguages" EntitySet="CountryLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslationKeys_Translators" Association="Self.FK_TranslationKeys_Translators">
+            <End Role="Translators" EntitySet="Translators" />
+            <End Role="TranslationKeys" EntitySet="TranslationKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translations_CountryLanguages" Association="Self.FK_Translations_CountryLanguages">
+            <End Role="CountryLanguages" EntitySet="CountryLanguages" />
+            <End Role="Translations" EntitySet="Translations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translations_TranslationKeys" Association="Self.FK_Translations_TranslationKeys">
+            <End Role="TranslationKeys" EntitySet="TranslationKeys" />
+            <End Role="Translations" EntitySet="Translations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslatorCountryLanguages_CountryLanguages" Association="Self.FK_TranslatorCountryLanguages_CountryLanguages">
+            <End Role="CountryLanguages" EntitySet="CountryLanguages" />
+            <End Role="TranslatorCountryLanguages" EntitySet="TranslatorCountryLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslatorCountryLanguages_Translators" Association="Self.FK_TranslatorCountryLanguages_Translators">
+            <End Role="Translators" EntitySet="Translators" />
+            <End Role="TranslatorCountryLanguages" EntitySet="TranslatorCountryLanguages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Translations" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="TranslationsContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="Translations.Country" />
+          <EntitySet Name="CountryLanguages" EntityType="Translations.CountryLanguage" />
+          <EntitySet Name="Languages" EntityType="Translations.Language" />
+          <EntitySet Name="TranslationKeys" EntityType="Translations.TranslationKey" />
+          <EntitySet Name="TranslatorCountryLanguages" EntityType="Translations.TranslatorCountryLanguage" />
+          <EntitySet Name="Translators" EntityType="Translations.Translator" />
+          <AssociationSet Name="FK_CountryLanguages_Countries" Association="Translations.FK_CountryLanguages_Countries">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="CountryLanguage" EntitySet="CountryLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryLanguages_Languages" Association="Translations.FK_CountryLanguages_Languages">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="CountryLanguage" EntitySet="CountryLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslatorCountryLanguages_CountryLanguages" Association="Translations.FK_TranslatorCountryLanguages_CountryLanguages">
+            <End Role="CountryLanguage" EntitySet="CountryLanguages" />
+            <End Role="TranslatorCountryLanguage" EntitySet="TranslatorCountryLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslationKeys_Translators" Association="Translations.FK_TranslationKeys_Translators">
+            <End Role="Translator" EntitySet="Translators" />
+            <End Role="TranslationKey" EntitySet="TranslationKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranslatorCountryLanguages_Translators" Association="Translations.FK_TranslatorCountryLanguages_Translators">
+            <End Role="Translator" EntitySet="Translators" />
+            <End Role="TranslatorCountryLanguage" EntitySet="TranslatorCountryLanguages" />
+          </AssociationSet>
+          <EntitySet Name="Translations" EntityType="Translations.Translation" />
+          <AssociationSet Name="FK_Translations_CountryLanguages" Association="Translations.FK_Translations_CountryLanguages">
+            <End Role="CountryLanguage" EntitySet="CountryLanguages" />
+            <End Role="Translation" EntitySet="Translations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Translations_TranslationKeys" Association="Translations.FK_Translations_TranslationKeys">
+            <End Role="TranslationKey" EntitySet="TranslationKeys" />
+            <End Role="Translation" EntitySet="Translations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ISONumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISOCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ShortCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="CountryLanguages" Relationship="Translations.FK_CountryLanguages_Countries" FromRole="Country" ToRole="CountryLanguage" />
+        </EntityType>
+        <EntityType Name="CountryLanguage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int64" Nullable="false" />
+          <Property Name="LanguageId" Type="Int64" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Country" Relationship="Translations.FK_CountryLanguages_Countries" FromRole="CountryLanguage" ToRole="Country" />
+          <NavigationProperty Name="Language" Relationship="Translations.FK_CountryLanguages_Languages" FromRole="CountryLanguage" ToRole="Language" />
+          <NavigationProperty Name="TranslatorCountryLanguages" Relationship="Translations.FK_TranslatorCountryLanguages_CountryLanguages" FromRole="CountryLanguage" ToRole="TranslatorCountryLanguage" />
+          <NavigationProperty Name="Translations" Relationship="Translations.FK_Translations_CountryLanguages" FromRole="CountryLanguage" ToRole="Translation" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="NativeName" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="CountryLanguages" Relationship="Translations.FK_CountryLanguages_Languages" FromRole="Language" ToRole="CountryLanguage" />
+        </EntityType>
+        <EntityType Name="TranslationKey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="EnglishValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="TranslatorId" Type="Int64" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Translator" Relationship="Translations.FK_TranslationKeys_Translators" FromRole="TranslationKey" ToRole="Translator" />
+          <NavigationProperty Name="Translations" Relationship="Translations.FK_Translations_TranslationKeys" FromRole="TranslationKey" ToRole="Translation" />
+        </EntityType>
+        <EntityType Name="TranslatorCountryLanguage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TranslatorId" Type="Int64" Nullable="false" />
+          <Property Name="CountryLanguageId" Type="Int64" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="CountryLanguage" Relationship="Translations.FK_TranslatorCountryLanguages_CountryLanguages" FromRole="TranslatorCountryLanguage" ToRole="CountryLanguage" />
+          <NavigationProperty Name="Translator" Relationship="Translations.FK_TranslatorCountryLanguages_Translators" FromRole="TranslatorCountryLanguage" ToRole="Translator" />
+        </EntityType>
+        <EntityType Name="Translator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="TranslationKeys" Relationship="Translations.FK_TranslationKeys_Translators" FromRole="Translator" ToRole="TranslationKey" />
+          <NavigationProperty Name="TranslatorCountryLanguages" Relationship="Translations.FK_TranslatorCountryLanguages_Translators" FromRole="Translator" ToRole="TranslatorCountryLanguage" />
+        </EntityType>
+        <Association Name="FK_CountryLanguages_Countries">
+          <End Type="Translations.Country" Role="Country" Multiplicity="1" />
+          <End Type="Translations.CountryLanguage" Role="CountryLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CountryLanguage">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryLanguages_Languages">
+          <End Type="Translations.Language" Role="Language" Multiplicity="1" />
+          <End Type="Translations.CountryLanguage" Role="CountryLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CountryLanguage">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslatorCountryLanguages_CountryLanguages">
+          <End Type="Translations.CountryLanguage" Role="CountryLanguage" Multiplicity="1" />
+          <End Type="Translations.TranslatorCountryLanguage" Role="TranslatorCountryLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLanguage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslatorCountryLanguage">
+              <PropertyRef Name="CountryLanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslationKeys_Translators">
+          <End Type="Translations.Translator" Role="Translator" Multiplicity="1" />
+          <End Type="Translations.TranslationKey" Role="TranslationKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslationKey">
+              <PropertyRef Name="TranslatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranslatorCountryLanguages_Translators">
+          <End Type="Translations.Translator" Role="Translator" Multiplicity="1" />
+          <End Type="Translations.TranslatorCountryLanguage" Role="TranslatorCountryLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Translator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranslatorCountryLanguage">
+              <PropertyRef Name="TranslatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Translation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TranslationKeyId" Type="Int64" Nullable="false" />
+          <Property Name="TranslatorId" Type="Int64" />
+          <Property Name="CountryLanguageId" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Translated" Type="DateTime" Precision="7" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Deleted" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="CountryLanguage" Relationship="Translations.FK_Translations_CountryLanguages" FromRole="Translation" ToRole="CountryLanguage" />
+          <NavigationProperty Name="TranslationKey" Relationship="Translations.FK_Translations_TranslationKeys" FromRole="Translation" ToRole="TranslationKey" />
+        </EntityType>
+        <Association Name="FK_Translations_CountryLanguages">
+          <End Type="Translations.CountryLanguage" Role="CountryLanguage" Multiplicity="0..1" />
+          <End Type="Translations.Translation" Role="Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryLanguage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="CountryLanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Translations_TranslationKeys">
+          <End Type="Translations.TranslationKey" Role="TranslationKey" Multiplicity="1" />
+          <End Type="Translations.Translation" Role="Translation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TranslationKey">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Translation">
+              <PropertyRef Name="TranslationKeyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Translations" />
+        <Alias Key="Target" Value="Translations.Store" />
+        <EntityContainerMapping CdmEntityContainer="TranslationsContainer" StorageEntityContainer="TranslationsStoreContainer">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="Translations.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="ISOCode" ColumnName="ISOCode" />
+                <ScalarProperty Name="ISONumber" ColumnName="ISONumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryLanguages">
+            <EntityTypeMapping TypeName="Translations.CountryLanguage">
+              <MappingFragment StoreEntitySet="CountryLanguages">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="Translations.Language">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="NativeName" ColumnName="NativeName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslationKeys">
+            <EntityTypeMapping TypeName="Translations.TranslationKey">
+              <MappingFragment StoreEntitySet="TranslationKeys">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="TranslatorId" ColumnName="TranslatorId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EnglishValue" ColumnName="EnglishValue" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranslatorCountryLanguages">
+            <EntityTypeMapping TypeName="Translations.TranslatorCountryLanguage">
+              <MappingFragment StoreEntitySet="TranslatorCountryLanguages">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CountryLanguageId" ColumnName="CountryLanguageId" />
+                <ScalarProperty Name="TranslatorId" ColumnName="TranslatorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Translators">
+            <EntityTypeMapping TypeName="Translations.Translator">
+              <MappingFragment StoreEntitySet="Translators">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="PhotoURL" ColumnName="PhotoURL" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Translations">
+            <EntityTypeMapping TypeName="Translations.Translation">
+              <MappingFragment StoreEntitySet="Translations">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Translated" ColumnName="Translated" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="CountryLanguageId" ColumnName="CountryLanguageId" />
+                <ScalarProperty Name="TranslatorId" ColumnName="TranslatorId" />
+                <ScalarProperty Name="TranslationKeyId" ColumnName="TranslationKeyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
