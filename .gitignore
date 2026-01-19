@@ -87,3 +87,4 @@ StyleCopReport.xml
 *.svclog
 *.scc
 .claude/
+nuget.exe
