@@ -1,118 +1,244 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Translations.Admin" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Translations.Admin" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>CIB Translation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/modern.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f5f9;
+        }
+        .app-header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        .brand-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .user-details {
+            line-height: 1.3;
+        }
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .user-role {
+            font-size: 12px;
+            opacity: 0.85;
+        }
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        .btn-logout svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        .app-nav {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 4px;
+            overflow-x: auto;
+        }
+        .nav-list li {
+            flex-shrink: 0;
+        }
+        .nav-list a {
+            display: block;
+            padding: 14px 18px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .nav-list a:hover {
+            color: #2563eb;
+            background: #f8fafc;
+        }
+        .nav-list a.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 30px;
+        }
+        .app-footer {
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 20px 30px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        /* Override old styles */
+        .wrapper, .row1, .row3, .row4, .left_col, .right_col, .containernav, .tags {
+            all: unset;
+            display: block;
+        }
+        .nav_bg, .sidebar { display: none !important; }
+        #container { max-width: 100%; margin: 0; padding: 0; }
+        .five_sixth, .sidebar_right { width: 100% !important; float: none !important; }
+    </style>
 </head>
-<link href="css/main.css" rel="stylesheet" type="text/css" media="all">
-    <link rel="stylesheet" href="css/newstyle.css" type="text/css">
-<link href="css/mediaqueries.css" rel="stylesheet" type="text/css" media="all">
 <body>
-    <div class="wrapper row1">
-        <div class="full_width" style="height:3px; background-color:#56a3d5"></div>
-        <header id="header" class="full_width clear">
-            <div id="hgroup">
-                <h1>
-                    <img src="images/logos2.png" width="754" height="75"></h1>
-                <h2></h2>
-            </div>
-            <div id="header-contact" style="padding-top: 20px;">
-                <a href="Login.aspx?logoff=true" class="button buttonlogout small " style="float: right; border-radius: 3px;">Log Out</a> <%--//gradient black--%>
-            </div>
-        </header>
-    </div>
-    <div class="wrapper row3">
-        <div id="container">
-            <div class="left_col">
-
-
-
-                <div class="containernav">
-
-                    <ul class="tags blue">
-                        <li id="liTranlator"><a href="Translators.aspx">Translator<span>31</span></a></li>
-                        <li id="liCountry"><a href="Countries.aspx">Countries <span>33</span></a></li>
-                        <li id="liLanguages"><a href="Languages.aspx">Languages <span>65</span></a></li>
-                        <li id="liCountryLang"><a href="CountryLanguages.aspx">Country Language <span>160</span></a></li>
-                        <li id="liTranslatorCountryLanguages"><a href="TranslatorCountyLanguage.aspx">Translator Languages <span>33</span></a></li>
-                        <li id="liTranlationKey"><a href="TranslationKeys.aspx">Translation Key <span>65</span></a></li>
-                        <li id="liTranlation"><a href="Translations.aspx">Translations <span>160</span></a></li>
-                        <li id="liTranslatorTranslations"><a href="TranslatorTranslations.aspx">Translator Translations <span>160</span></a></li>
-
-
-
-
-                    </ul>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v2.01h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                    </svg>
                 </div>
-
-
-      <%--            <div id="sidebar_1" class="sidebar ">
-                    <aside>
-                        <!-- ########################################################################################## -->
-                        <div class="nav_bg">
-                            <div class="circle fl_left"><span class="icon-sort-down icon-large" style="margin-left: 6px; font-size:12px; color:#333; position:absolute;"></span></div>
-                            <h2 class="fl_left">Side Navigation</h2>
-                        </div>
-                        <nav>
-                            <ul>
-                                <li runat="server" class="active" id="liTranlator"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Translators.aspx">Translator</a></li>
-                               <li runat="server" id="liCountry"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Countries.aspx">Countries</a></li>
-                               <li runat="server" id="liLanguages"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Languages.aspx">Languages</a></li>
-                                <li runat="server" id="liCountryLang"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="CountryLanguages.aspx">Country Language</a></li>
-                                <li runat="server" id="liTranslatorCountryLanguages"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="TranslatorCountyLanguage.aspx">Translator Languages</a></li>
-                                <li runat="server" id="liTranlationKey"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="TranslationKeys.aspx">Translation Key</a></li>
-                                <li runat="server" id="liTranlation"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="Translations.aspx">Translations</a></li>
-                                <li runat="server" id="liTranslatorTranslations"><div class="circle2 fl_left"><span class=" icon-chevron-right icon-large" style="margin-left: 4px; margin-top:5px; font-size:8px; color:#fff; position:absolute;"></span></div><a href="TranslatorTranslations.aspx">Translator Translations</a></li>                                
-                                
-                            </ul>
-                        </nav>
-                        <!-- /nav -->
-
-
-
-
-                        <!-- ########################################################################################## -->
-                    </aside>
-                </div>--%>
+                <span class="brand-text">CIB Translation System</span>
             </div>
-            <div class="right_col">
-                <form id="form1" runat="server">
-
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-
-                </form>
-
+            <div class="header-right">
+                <div class="user-section">
+                    <div class="user-avatar">
+                        <asp:Literal ID="litUserInitials" runat="server"></asp:Literal>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-name"><asp:Literal ID="litUserName" runat="server"></asp:Literal></div>
+                        <div class="user-role"><asp:Literal ID="litUserRole" runat="server"></asp:Literal></div>
+                    </div>
+                </div>
+                <a href="Login.aspx?logoff=true" class="btn-logout">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                    </svg>
+                    Logout
+                </a>
             </div>
         </div>
-    </div>
-    <div class="clear">&nbsp;</div>
-    <div id="container">
-        <div class="wrapper row4">
-            <div id="copyright" class="clear">
-                <p class="fl_left">2014 © www.Translate.cib-pay.com. All rights reserved.</p>
+    </header>
 
-            </div>
+    <!-- Navigation -->
+    <nav class="app-nav">
+        <div class="nav-inner">
+            <ul class="nav-list">
+                <li><a href="Translators.aspx" id="navTranslators" runat="server">Translators</a></li>
+                <li><a href="Countries.aspx" id="navCountries" runat="server">Countries</a></li>
+                <li><a href="Languages.aspx" id="navLanguages" runat="server">Languages</a></li>
+                <li><a href="CountryLanguages.aspx" id="navCountryLanguages" runat="server">Country Languages</a></li>
+                <li><a href="TranslatorCountyLanguage.aspx" id="navTranslatorLanguages" runat="server">Translator Languages</a></li>
+                <li><a href="TranslationKeys.aspx" id="navTranslationKeys" runat="server">Translation Keys</a></li>
+                <li><a href="Translations.aspx" id="navTranslations" runat="server">Translations</a></li>
+                <li><a href="TranslatorTranslations.aspx" id="navTranslatorTranslations" runat="server">Translator Translations</a></li>
+            </ul>
         </div>
+    </nav>
 
-    </div>
-    <!-- Scripts -->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../layout/scripts/jquery-latest.min.js"><\/script>\
-<script src="js/jquery-ui.min.js"><\/script>')</script>
-    <script>jQuery(document).ready(function ($) { $('img').removeAttr('width height'); });</script>
-    <script src="js/jquery-mobilemenu.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/custom.js"></script>
+    <!-- Main Content -->
+    <main class="main-container">
+        <form id="form1" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>&copy; 2024 CIB Finance - Translation Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Highlight active navigation
+        $(document).ready(function() {
+            var currentPage = window.location.pathname.toLowerCase();
+            $('.nav-list a').each(function() {
+                var href = $(this).attr('href').toLowerCase();
+                if (currentPage.indexOf(href.replace('.aspx', '')) > -1) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

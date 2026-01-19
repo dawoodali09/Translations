@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,160 +11,101 @@ namespace Translations
 {
     public partial class Admin : System.Web.UI.MasterPage
     {
-        private Bll.Repositories.TranslatorsRepository TranslatorsRepo = null;
+        private TranslatorsRepository TranslatorsRepo = null;
         protected Entities DbContext;
-       
+
         public Admin()
         {
+            DbContext = new Entities();
             TranslatorsRepo = new TranslatorsRepository(DbContext);
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-         //   SetUserMenu();
-          //  SetActiveMenu();
+            LoadUserInfo();
+            SetActiveNavigation();
         }
 
-        //public void SetActiveMenu()
-        //{
-        //    string URL = Request.Url.AbsolutePath;
+        private void LoadUserInfo()
+        {
+            try
+            {
+                HttpCookie cookie = Request.Cookies["TranslatorID"];
+                if (cookie != null)
+                {
+                    long userId = long.Parse(cookie.Value.Split('=')[1]);
+                    Translator user = TranslatorsRepo.GetActiveById(userId);
 
-        //    if (URL.ToLowerInvariant().Contains("translator.aspx"))
-        //    {
-        //        liCountry.Attributes.Remove("class");
-        //        liCountryLang.Attributes.Remove("class");
-        //        liLanguages.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liTranlator.Attributes.Add("class", "active");
-        //    }
-        //    else if (URL.ToLowerInvariant().Contains("countries.aspx"))
-        //    {
-        //        liCountryLang.Attributes.Remove("class");
-        //        liLanguages.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranlator.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liCountry.Attributes.Add("class", "active");
-        //    }
-        //    else if (URL.ToLowerInvariant().Contains("countrylanguages.aspx"))
-        //    {
-        //        liLanguages.Attributes.Remove("class");
-        //        liCountry.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranlator.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liCountryLang.Attributes.Add("class", "active");
-        //    }
-        //    else if (URL.ToLowerInvariant().Contains("languages.aspx"))
-        //    {
-        //        liCountryLang.Attributes.Remove("class");
-        //        liCountry.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranlator.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liLanguages.Attributes.Add("class", "active");                
-        //    }   
-        //    else if(URL.ToLowerInvariant().Contains("translatortranslations.aspx"))
-        //    {
-        //        liCountryLang.Attributes.Remove("class");
-        //        liCountry.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranlator.Attributes.Remove("class");                
-        //        liLanguages.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Add("class", "active");
-        //    }
-        //    else if (URL.ToLowerInvariant().Contains("translations.aspx") | URL.ToLowerInvariant().Contains("translations2.aspx"))
-        //    {
-        //        liLanguages.Attributes.Remove("class");
-        //        liCountry.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");                
-        //        liTranlator.Attributes.Remove("class");
-        //        liCountryLang.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liTranlation.Attributes.Add("class", "active");
-        //    }
-        //    else if (URL.ToLowerInvariant().Contains("translationkeys.aspx"))
-        //    {
-        //        liLanguages.Attributes.Remove("class");
-        //        liCountry.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Remove("class");                
-        //        liTranlator.Attributes.Remove("class");
-        //        liCountryLang.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Add("class", "active");                
-        //    }
-        //    else if (URL.ToLowerInvariant().Contains("translatorcountylanguage.aspx"))
-        //    {
-        //        liLanguages.Attributes.Remove("class");
-        //        liCountry.Attributes.Remove("class");                            
-        //        liTranlator.Attributes.Remove("class");
-        //        liCountryLang.Attributes.Remove("class");
-        //        liTranlation.Attributes.Remove("class");
-        //        liTranlationKey.Attributes.Remove("class");
-        //        liTranslatorTranslations.Attributes.Remove("class");
-        //        liTranslatorCountryLanguages.Attributes.Add("class", "active");
-        //    }
+                    if (user != null)
+                    {
+                        // Set user name
+                        litUserName.Text = user.FirstName + " " + user.LastName;
 
-            
-        //}
-        
-        //void SetUserMenu()
-        //{
-        //    Translator _user = new Translator();
-        //    if(Session["translator"]!=null)
-        //    {
-        //        _user = Session["translator"] as Translator;
-        //        string PageName = string.Empty;
+                        // Set user role
+                        litUserRole.Text = user.Role ?? "User";
 
-        //        if(_user != null)
-        //        {
-                    
-        //            if(_user.Role.ToLowerInvariant() == "administrator")
-        //            {
-        //                liTranlator.Visible = true;
-        //                liCountryLang.Visible = true;
-        //                liTranlation.Visible = true;
-        //                liTranlationKey.Visible = true;
-        //                liCountry.Visible = true;
-        //                liLanguages.Visible = true;
-        //                liTranslatorCountryLanguages.Visible = true;
-        //                liTranslatorTranslations.Visible = true;
-        //            }
-        //            else if (_user.Role.ToLowerInvariant() == "translator" )
-        //            {
-        //                string currentPage = Request.Url.AbsolutePath.ToLowerInvariant().ToString().Trim();
-        //                if (currentPage.Contains("countries") | currentPage.Contains("languages") | currentPage.Contains("translation"))
-        //                {     
-        //                    liCountry.Visible = true;
-        //                    liLanguages.Visible = true;
-        //                    liTranslatorCountryLanguages.Visible = false;
-        //                    liTranlator.Visible = false;
-        //                    liCountryLang.Visible = false;
-        //                    liTranlation.Visible = true;
-        //                    liTranlationKey.Visible = false;
-        //                    liTranslatorTranslations.Visible = false;
-        //                }
-        //                else
-        //                {
-        //                    Session.Abandon();
-        //                    Response.Redirect("Login.aspx");
-        //                }
-        //            }
-        //            // enable and disable links
-        //        }
-        //    }
-        //}
+                        // Set user initials (first letter of first name + first letter of last name)
+                        string initials = "";
+                        if (!string.IsNullOrEmpty(user.FirstName))
+                            initials += user.FirstName[0].ToString().ToUpper();
+                        if (!string.IsNullOrEmpty(user.LastName))
+                            initials += user.LastName[0].ToString().ToUpper();
+
+                        litUserInitials.Text = initials;
+                    }
+                    else
+                    {
+                        litUserName.Text = "User";
+                        litUserRole.Text = "";
+                        litUserInitials.Text = "U";
+                    }
+                }
+                else
+                {
+                    litUserName.Text = "Guest";
+                    litUserRole.Text = "";
+                    litUserInitials.Text = "G";
+                }
+            }
+            catch
+            {
+                litUserName.Text = "User";
+                litUserRole.Text = "";
+                litUserInitials.Text = "U";
+            }
+        }
+
+        private void SetActiveNavigation()
+        {
+            string url = Request.Url.AbsolutePath.ToLowerInvariant();
+
+            // Reset all nav items
+            navTranslators.Attributes.Remove("class");
+            navCountries.Attributes.Remove("class");
+            navLanguages.Attributes.Remove("class");
+            navCountryLanguages.Attributes.Remove("class");
+            navTranslatorLanguages.Attributes.Remove("class");
+            navTranslationKeys.Attributes.Remove("class");
+            navTranslations.Attributes.Remove("class");
+            navTranslatorTranslations.Attributes.Remove("class");
+
+            // Set active based on current page
+            if (url.Contains("translators.aspx"))
+                navTranslators.Attributes.Add("class", "active");
+            else if (url.Contains("countries.aspx"))
+                navCountries.Attributes.Add("class", "active");
+            else if (url.Contains("languages.aspx"))
+                navLanguages.Attributes.Add("class", "active");
+            else if (url.Contains("countrylanguages.aspx"))
+                navCountryLanguages.Attributes.Add("class", "active");
+            else if (url.Contains("translatorcountylanguage.aspx"))
+                navTranslatorLanguages.Attributes.Add("class", "active");
+            else if (url.Contains("translationkeys.aspx"))
+                navTranslationKeys.Attributes.Add("class", "active");
+            else if (url.Contains("translatortranslations.aspx"))
+                navTranslatorTranslations.Attributes.Add("class", "active");
+            else if (url.Contains("translations.aspx") || url.Contains("translations2.aspx"))
+                navTranslations.Attributes.Add("class", "active");
+        }
     }
 }
