@@ -1,4 +1,4 @@
-# CIB Translation Management System
+# Translation Management System
 
 A web-based translation management system built with ASP.NET Web Forms that enables organizations to manage multilingual content across different countries and languages. The system allows administrators to create translation keys with English source text, assign translators to specific country-language pairs, and track translation progress.
 
@@ -161,4 +161,4 @@ ResxFileGenerator.exe
 
 ## License
 
-All Rights Reserved - CIB Finance
+All Rights Reserved
