@@ -8,10 +8,15 @@
     <link href="css/modern.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             background-color: #f1f5f9;
+            min-height: 100vh;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
         }
         .app-header {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
@@ -147,6 +152,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 25px 30px;
+            flex: 1;
         }
         .app-footer {
             background: white;
@@ -156,6 +162,11 @@
             color: #64748b;
             font-size: 14px;
             margin-top: 40px;
+            clear: both;
+            width: 100%;
+        }
+        .app-footer p {
+            margin: 0;
         }
         /* Override old styles */
         .wrapper, .row1, .row3, .row4, .left_col, .right_col, .containernav, .tags {
@@ -165,6 +176,7 @@
         .nav_bg, .sidebar { display: none !important; }
         #container { max-width: 100%; margin: 0; padding: 0; }
         .five_sixth, .sidebar_right { width: 100% !important; float: none !important; }
+        #copyright { display: none !important; }
     </style>
 </head>
 <body>
