@@ -82,6 +82,7 @@ namespace Translations
                 txtTranslationKey.Text = obj.TranslationKey.Key;
                 txtEnglishText.Text = obj.TranslationKey.EnglishValue;
                 txtTranslation.Text = !string.IsNullOrEmpty(obj.Value) ? obj.Value : "";
+                txtComments.Text = !string.IsNullOrEmpty(obj.Comments) ? obj.Comments : "";
                 chkbxActive.Checked = obj.Active;              
             }
 

@@ -93,5 +93,29 @@ namespace Translations
                 Response.Redirect("Login.aspx");
             }
         }
+
+        /// <summary>
+        /// Check if current user is an Administrator
+        /// </summary>
+        public bool IsAdmin()
+        {
+            if (_user != null)
+            {
+                return _user.Role == "Administrator";
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Redirect to Translations page if user is not an Administrator
+        /// Call this in Page_Load of admin-only pages
+        /// </summary>
+        public void RequireAdmin()
+        {
+            if (!IsAdmin())
+            {
+                Response.Redirect("Translations.aspx");
+            }
+        }
     }
 }

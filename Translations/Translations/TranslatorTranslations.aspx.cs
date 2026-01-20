@@ -18,6 +18,7 @@ namespace Translations
         }
         protected new void Page_Load(object sender, EventArgs e)
         {
+            RequireAdmin();
             if (!Page.IsPostBack)
             {
                 BindTranslators();

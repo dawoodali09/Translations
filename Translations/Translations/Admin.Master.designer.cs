@@ -37,9 +37,19 @@ namespace Translations {
         protected global::System.Web.UI.WebControls.Literal litUserRole;
 
         /// <summary>
+        /// liTranslators control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTranslators;
+
+        /// <summary>
         /// navTranslators control.
         /// </summary>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navTranslators;
+
+        /// <summary>
+        /// liCountries control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCountries;
 
         /// <summary>
         /// navCountries control.
@@ -47,9 +57,19 @@ namespace Translations {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navCountries;
 
         /// <summary>
+        /// liLanguages control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liLanguages;
+
+        /// <summary>
         /// navLanguages control.
         /// </summary>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navLanguages;
+
+        /// <summary>
+        /// liCountryLanguages control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCountryLanguages;
 
         /// <summary>
         /// navCountryLanguages control.
@@ -57,9 +77,19 @@ namespace Translations {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navCountryLanguages;
 
         /// <summary>
+        /// liTranslatorLanguages control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTranslatorLanguages;
+
+        /// <summary>
         /// navTranslatorLanguages control.
         /// </summary>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navTranslatorLanguages;
+
+        /// <summary>
+        /// liTranslationKeys control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTranslationKeys;
 
         /// <summary>
         /// navTranslationKeys control.
@@ -67,9 +97,19 @@ namespace Translations {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navTranslationKeys;
 
         /// <summary>
+        /// liTranslations control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTranslations;
+
+        /// <summary>
         /// navTranslations control.
         /// </summary>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navTranslations;
+
+        /// <summary>
+        /// liTranslatorTranslations control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTranslatorTranslations;
 
         /// <summary>
         /// navTranslatorTranslations control.

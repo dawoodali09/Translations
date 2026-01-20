@@ -8,16 +8,30 @@
     <link href="css/modern.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
     <style>
+        /* ========================================
+           BASE RESET & LAYOUT
+           ======================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         html, body {
             margin: 0;
             padding: 0;
             background-color: #f1f5f9;
             min-height: 100vh;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            font-size: 14px;
+            color: #1e293b;
+            line-height: 1.5;
         }
         body {
             display: flex;
             flex-direction: column;
         }
+
+        /* ========================================
+           HEADER STYLES
+           ======================================== */
         .app-header {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             color: white;
@@ -108,6 +122,10 @@
             height: 16px;
             fill: currentColor;
         }
+
+        /* ========================================
+           NAVIGATION STYLES
+           ======================================== */
         .app-nav {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -148,12 +166,21 @@
             color: #2563eb;
             border-bottom-color: #2563eb;
         }
+
+        /* ========================================
+           MAIN CONTAINER
+           ======================================== */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 25px 30px;
             flex: 1;
+            width: 100%;
         }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
         .app-footer {
             background: white;
             border-top: 1px solid #e2e8f0;
@@ -161,46 +188,173 @@
             text-align: center;
             color: #64748b;
             font-size: 14px;
-            margin-top: 40px;
-            clear: both;
-            width: 100%;
+            margin-top: auto;
         }
         .app-footer p {
             margin: 0;
         }
-        /* Override old styles */
-        .wrapper, .row1, .row3, .row4, .left_col, .right_col, .containernav, .tags {
-            all: unset;
+
+        /* ========================================
+           LEGACY CLASS RESETS
+           ======================================== */
+        .wrapper, .row1, .row2, .row3, .row4,
+        .left_col, .right_col, .containernav, .tags,
+        #container {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            float: none;
+            clear: both;
+        }
+        .five_sixth, .sidebar_right, .one_quarter {
+            width: 100% !important;
+            float: none !important;
+            margin: 0 !important;
+        }
+        .clear {
+            clear: both;
+        }
+        aside {
             display: block;
         }
-        .nav_bg, .sidebar { display: none !important; }
-        #container { max-width: 100%; margin: 0; padding: 0; }
-        .five_sixth, .sidebar_right { width: 100% !important; float: none !important; }
         #copyright { display: none !important; }
-        /* Make GridViews full width */
-        table[id*="gv"], .GridView, [id*="GridView"] {
-            width: 100% !important;
+
+        /* ========================================
+           CARD / PANEL STYLES
+           ======================================== */
+        .card-panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
         }
-        .main-container table {
-            width: 100%;
-            border-collapse: collapse;
+
+        /* Style divs containing grids as cards */
+        div[id*="div"]:not(.form_wraper_trs):not(.inputprop):not(.clear):not(.header-inner):not(.nav-inner) > aside,
+        .five_sixth.sidebar_right > aside,
+        .sidebar_right > aside {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        .main-container table th {
-            background: #3b82f6;
+
+        /* Sidebar/Form card styles */
+        .sidebar.one_quarter,
+        .sidebar.one_quarter.first,
+        div[id="divAddEdit"] {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .sidebar.one_quarter aside,
+        div[id="divAddEdit"] aside {
+            padding: 0;
+        }
+
+        /* ========================================
+           SECTION HEADER (nav_bg)
+           ======================================== */
+        .nav_bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
-            padding: 12px 15px;
+            padding: 16px 20px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav_bg h2, .nav_bg .fl_left {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            float: none;
+        }
+        .nav_bg .button_add,
+        .nav_bg a.button_add {
+            background: rgba(255,255,255,0.2);
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3);
+            float: none !important;
+            margin: 0;
+            transition: background 0.2s;
+        }
+        .nav_bg .button_add:hover,
+        .nav_bg a.button_add:hover {
+            background: rgba(255,255,255,0.3);
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ========================================
+           GRID/TABLE STYLES
+           ======================================== */
+        div[style*="float: left"][style*="margin:0 20px"],
+        div[style*="float: left; margin:0 20px"] {
+            float: none !important;
+            margin: 0 !important;
+            width: 100% !important;
+            text-align: left !important;
+            padding: 0;
+        }
+
+        table, .GridView,
+        table[id*="gv"], [id*="GridView"] {
+            width: 100% !important;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        table th {
+            background: #f8fafc;
+            color: #374151;
+            padding: 14px 16px;
             text-align: left;
             font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
         }
-        .main-container table td {
-            padding: 12px 15px;
+        table td {
+            padding: 14px 16px;
             border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
         }
-        .main-container table tr:hover {
+        table tr:hover td {
             background: #f8fafc;
         }
-        /* Style buttons in grid */
-        .main-container table a[id*="lbt"], .main-container table a[id*="lbtn"] {
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Pager styles */
+        table tr td[colspan] {
+            background: #f8fafc;
+            padding: 12px 16px;
+        }
+        table tr td a {
+            color: #2563eb;
+        }
+
+        /* ========================================
+           ACTION BUTTONS IN GRID
+           ======================================== */
+        table a[id*="lbt"], table a[id*="lbtn"],
+        a[id*="lbtEdit"], a[id*="lbtnDelete"],
+        .btn-primary, .btn-danger {
             display: inline-block;
             padding: 6px 14px;
             border-radius: 6px;
@@ -208,50 +362,344 @@
             font-size: 13px;
             font-weight: 500;
             margin: 2px;
+            transition: all 0.2s;
         }
-        .main-container table a[id*="lbtEdit"], .main-container table a[id*="Edit"] {
+        table a[id*="lbtEdit"], a[id*="lbtEdit"],
+        table a[id*="Edit"]:not([id*="Delete"]),
+        .btn-primary {
             background: #3b82f6;
             color: white !important;
         }
-        .main-container table a[id*="lbtnDelete"], .main-container table a[id*="Delete"] {
+        table a[id*="lbtEdit"]:hover, a[id*="lbtEdit"]:hover,
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        table a[id*="lbtnDelete"], a[id*="lbtnDelete"],
+        table a[id*="Delete"],
+        .btn-danger {
             background: #ef4444;
             color: white !important;
         }
-        /* Form buttons */
-        input[type="submit"], .button_add, .Button_add {
+        table a[id*="lbtnDelete"]:hover, a[id*="lbtnDelete"]:hover,
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        /* ========================================
+           FORM STYLES
+           ======================================== */
+        /* Override inline text-align: center on form containers */
+        .sidebar.one_quarter[style*="text-align"],
+        div[id="divAddEdit"][style*="text-align"],
+        div[id*="divAddEdit"] {
+            text-align: left !important;
+        }
+
+        /* Add padding to form content area (after nav_bg header) */
+        .sidebar.one_quarter > aside > .form_wraper_trs,
+        .sidebar.one_quarter > aside > .form_wraper_trs-btn,
+        div[id="divAddEdit"] > aside > .form_wraper_trs,
+        div[id="divAddEdit"] > aside > .form_wraper_trs-btn,
+        div[id="divAddEdit"] aside > .form_wraper_trs,
+        div[id="divAddEdit"] aside > .clear {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        .sidebar.one_quarter > aside > .form_wraper_trs:first-of-type,
+        div[id="divAddEdit"] > aside > .form_wraper_trs:first-of-type,
+        div[id="divAddEdit"] aside > .form_wraper_trs:first-of-type {
+            padding-top: 24px;
+        }
+
+        .form-bg {
+            padding: 24px;
+            background: white;
+        }
+        .form_wraper_trs {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 16px;
+        }
+        .form_wraper_trs label,
+        .form_wraper_trs .first,
+        .form_wraper_trs-trans2-label,
+        .form_wraper_trs-trankey-la_eng,
+        .form_wraper_trs-trankey-la_com,
+        .form_wraper_trs-trankey-la_ac,
+        .form_wraper_trs-tcl-la_note,
+        .form_wraper_trs-tcl-la_ac,
+        .countryLang_lable-ti,
+        .countryLang_lable-co,
+        .countryLang_lable-lan,
+        .countryLang_lable-no,
+        .countryLang_lable-ac {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin: 0;
+            min-width: 140px;
+            width: 140px;
+            flex-shrink: 0;
+            padding-top: 0;
+            margin-top: 0 !important;
+        }
+        .inputprop, .inputprop-key {
+            flex: 1;
+            min-width: 200px;
+            max-width: 400px;
+            position: relative;
+        }
+
+        /* Form inputs */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select,
+        textarea,
+        .form-control,
+        .dropdown_pro,
+        .dropdown_pro2 {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: white;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* Validation messages */
+        span[id*="Validator"], .validator {
+            color: #dc2626;
+            font-size: 12px;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        input[type="submit"],
+        .button_add,
+        .Button_add,
+        button[type="submit"] {
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 24px;
             border: none;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            margin: 5px;
+            margin: 4px;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
         }
-        input[type="submit"]:hover, .button_add:hover, .Button_add:hover {
+        input[type="submit"]:hover,
+        .button_add:hover,
+        .Button_add:hover,
+        button[type="submit"]:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
-        /* Form inputs */
-        input[type="text"], input[type="password"], select, textarea {
-            padding: 10px 14px;
-            border: 2px solid #e2e8f0;
+
+        .form_wraper_trs-btn {
+            margin-top: 20px;
+            padding: 20px 24px 24px 24px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Button row in forms without form_wraper_trs-btn class */
+        .sidebar.one_quarter aside > .form_wraper_trs:last-of-type,
+        div[id="divAddEdit"] aside > .form_wraper_trs:last-of-type {
+            padding-bottom: 24px;
+        }
+
+        /* ========================================
+           ERROR MESSAGES
+           ======================================== */
+        div[id="diverror"], .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 12px 16px;
             border-radius: 8px;
+            border: 1px solid #fecaca;
+            margin-top: 16px;
             font-size: 14px;
-            transition: border-color 0.2s;
         }
-        input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+
+        /* ========================================
+           SEARCH SECTION
+           ======================================== */
+        div[id*="divSearch"] {
+            background: #f8fafc;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        div[id*="divSearch"] table {
+            width: auto !important;
+            background: transparent;
+        }
+        div[id*="divSearch"] table td {
+            padding: 4px 8px;
+            border: none;
+            background: transparent;
+        }
+        div[id*="divSearch"] table tr:hover td {
+            background: transparent;
+        }
+
+        /* ========================================
+           FILE UPLOAD
+           ======================================== */
+        input[type="file"] {
+            padding: 8px;
+            border: 2px dashed #e2e8f0;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            cursor: pointer;
+        }
+        input[type="file"]:hover {
             border-color: #3b82f6;
-            outline: none;
         }
-        /* Card-like sections */
-        .sidebar aside, .form-bg {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
+
+        /* ========================================
+           RESPONSIVE STYLES
+           ======================================== */
+        @media (max-width: 992px) {
+            .header-inner {
+                padding: 12px 20px;
+            }
+            .brand-text {
+                font-size: 16px;
+            }
+            .nav-inner {
+                padding: 0 20px;
+            }
+            .main-container {
+                padding: 20px;
+            }
+            table th, table td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .header-right {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-list {
+                justify-content: flex-start;
+                padding-bottom: 4px;
+            }
+            .nav-list a {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+            .main-container {
+                padding: 16px;
+            }
+            .form_wraper_trs {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .form_wraper_trs label,
+            .form_wraper_trs .first,
+            .form_wraper_trs-trans2-label,
+            .form_wraper_trs-trankey-la_eng,
+            .form_wraper_trs-trankey-la_com,
+            .form_wraper_trs-trankey-la_ac,
+            .form_wraper_trs-tcl-la_note,
+            .form_wraper_trs-tcl-la_ac,
+            .countryLang_lable-ti,
+            .countryLang_lable-co,
+            .countryLang_lable-lan,
+            .countryLang_lable-no,
+            .countryLang_lable-ac {
+                width: 100%;
+                min-width: 100%;
+            }
+            .inputprop, .inputprop-key {
+                width: 100%;
+                min-width: 100%;
+                max-width: 100%;
+            }
+            input[type="text"],
+            input[type="password"],
+            select,
+            textarea {
+                max-width: 100%;
+                width: 100%;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .nav_bg {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            /* Mobile form padding */
+            .sidebar.one_quarter > aside > .form_wraper_trs,
+            div[id="divAddEdit"] > aside > .form_wraper_trs,
+            div[id="divAddEdit"] aside > .form_wraper_trs {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+            }
+            .brand-text {
+                font-size: 14px;
+            }
+            .user-avatar {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+            }
+            .btn-logout {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -291,14 +739,14 @@
     <nav class="app-nav">
         <div class="nav-inner">
             <ul class="nav-list">
-                <li><a href="Translators.aspx" id="navTranslators" runat="server">Translators</a></li>
-                <li><a href="Countries.aspx" id="navCountries" runat="server">Countries</a></li>
-                <li><a href="Languages.aspx" id="navLanguages" runat="server">Languages</a></li>
-                <li><a href="CountryLanguages.aspx" id="navCountryLanguages" runat="server">Country Languages</a></li>
-                <li><a href="TranslatorCountyLanguage.aspx" id="navTranslatorLanguages" runat="server">Translator Languages</a></li>
-                <li><a href="TranslationKeys.aspx" id="navTranslationKeys" runat="server">Translation Keys</a></li>
-                <li><a href="Translations.aspx" id="navTranslations" runat="server">Translations</a></li>
-                <li><a href="TranslatorTranslations.aspx" id="navTranslatorTranslations" runat="server">Translator Translations</a></li>
+                <li id="liTranslators" runat="server"><a href="Translators.aspx" id="navTranslators" runat="server">Translators</a></li>
+                <li id="liCountries" runat="server"><a href="Countries.aspx" id="navCountries" runat="server">Countries</a></li>
+                <li id="liLanguages" runat="server"><a href="Languages.aspx" id="navLanguages" runat="server">Languages</a></li>
+                <li id="liCountryLanguages" runat="server"><a href="CountryLanguages.aspx" id="navCountryLanguages" runat="server">Country Languages</a></li>
+                <li id="liTranslatorLanguages" runat="server"><a href="TranslatorCountyLanguage.aspx" id="navTranslatorLanguages" runat="server">Translator Languages</a></li>
+                <li id="liTranslationKeys" runat="server"><a href="TranslationKeys.aspx" id="navTranslationKeys" runat="server">Translation Keys</a></li>
+                <li id="liTranslations" runat="server"><a href="Translations.aspx" id="navTranslations" runat="server">Translations</a></li>
+                <li id="liTranslatorTranslations" runat="server"><a href="TranslatorTranslations.aspx" id="navTranslatorTranslations" runat="server">Translator Translations</a></li>
             </ul>
         </div>
     </nav>

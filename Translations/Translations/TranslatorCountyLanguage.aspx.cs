@@ -19,6 +19,7 @@ namespace Translations
         }
         protected new void Page_Load(object sender, EventArgs e)
         {
+            RequireAdmin();
             if(!IsPostBack)
             {
                 divTranslatorCountryLanguages.Visible = true;
@@ -26,7 +27,7 @@ namespace Translations
                 ListTranslatorCountryLanguages();
                 BindTranslators();
                 BindCountryLanguage();
-            }            
+            }
         }
 
         public void ListTranslatorCountryLanguages()

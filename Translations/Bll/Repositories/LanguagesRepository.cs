@@ -19,7 +19,7 @@ namespace Bll.Repositories
         {
         }
 
-        public void CreateLanguage(string code, string nativeName, string name, bool active)
+        public void CreateLanguage(string code, string nativeName, string name, string note, bool active)
         {
             Language temp =
                 new Language()
@@ -28,8 +28,8 @@ namespace Bll.Repositories
                     Created = DateTime.Now,
                     Code = code,
                     NativeName = nativeName,
-                    Name = name
-                    
+                    Name = name,
+                    Note = note
                 };
             DbContext.Languages.Add(temp);
         }
@@ -40,13 +40,14 @@ namespace Bll.Repositories
             temp.Deleted = DateTime.Now;
         }
 
-        public void UpdateLanguage(long id, string code, string name, string nativeName, bool active)
+        public void UpdateLanguage(long id, string code, string name, string nativeName, string note, bool active)
         {
             Language temp = GetNonDeletedById(id);
-           temp.Active = active;
-                   temp.Code = code;
-                   temp.NativeName = nativeName;
-                   temp.Name = name;
+            temp.Active = active;
+            temp.Code = code;
+            temp.NativeName = nativeName;
+            temp.Name = name;
+            temp.Note = note;
         }
 
         public IEnumerable<Language> GetAllNonDeleted()

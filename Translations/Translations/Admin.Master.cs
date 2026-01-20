@@ -24,6 +24,7 @@ namespace Translations
         {
             LoadUserInfo();
             SetActiveNavigation();
+            SetNavigationVisibility();
         }
 
         private void LoadUserInfo()
@@ -73,6 +74,42 @@ namespace Translations
                 litUserRole.Text = "";
                 litUserInitials.Text = "U";
             }
+        }
+
+        private bool IsAdmin()
+        {
+            try
+            {
+                HttpCookie cookie = Request.Cookies["TranslatorID"];
+                if (cookie != null)
+                {
+                    long userId = long.Parse(cookie.Value.Split('=')[1]);
+                    Translator user = TranslatorsRepo.GetActiveById(userId);
+                    if (user != null)
+                    {
+                        return user.Role == "Administrator";
+                    }
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        private void SetNavigationVisibility()
+        {
+            bool isAdmin = IsAdmin();
+
+            // Admin-only pages - hide for Translators
+            liTranslators.Visible = isAdmin;
+            liCountries.Visible = isAdmin;
+            liLanguages.Visible = isAdmin;
+            liCountryLanguages.Visible = isAdmin;
+            liTranslatorLanguages.Visible = isAdmin;
+            liTranslatorTranslations.Visible = isAdmin;
+
+            // Translator pages - visible to all
+            liTranslationKeys.Visible = true;
+            liTranslations.Visible = true;
         }
 
         private void SetActiveNavigation()

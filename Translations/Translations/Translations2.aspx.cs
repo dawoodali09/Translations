@@ -71,6 +71,7 @@ namespace Translations
             {
                 newObj = TranslationRepo.GetNonDeletedByTranslationKeyIdAndCountryLanguageID(long.Parse(ddlPendingKeys.SelectedValue.ToString()), long.Parse(ddlLangauges.SelectedValue.ToString()));
                 txtTranslation.Text = string.IsNullOrEmpty(newObj.Value) ? "" : newObj.Value.ToString();
+                txtComments.Text = string.IsNullOrEmpty(newObj.Comments) ? "" : newObj.Comments.ToString();
             }
         }
 
