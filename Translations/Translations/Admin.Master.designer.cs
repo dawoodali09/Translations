@@ -117,6 +117,16 @@ namespace Translations {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navTranslatorTranslations;
 
         /// <summary>
+        /// liResourceGenerator control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liResourceGenerator;
+
+        /// <summary>
+        /// navResourceGenerator control.
+        /// </summary>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor navResourceGenerator;
+
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>

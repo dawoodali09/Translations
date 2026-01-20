@@ -747,6 +747,7 @@
                 <li id="liTranslationKeys" runat="server"><a href="TranslationKeys.aspx" id="navTranslationKeys" runat="server">Translation Keys</a></li>
                 <li id="liTranslations" runat="server"><a href="Translations.aspx" id="navTranslations" runat="server">Translations</a></li>
                 <li id="liTranslatorTranslations" runat="server"><a href="TranslatorTranslations.aspx" id="navTranslatorTranslations" runat="server">Translator Translations</a></li>
+                <li id="liResourceGenerator" runat="server"><a href="ResourceGenerator.aspx" id="navResourceGenerator" runat="server">Resource Generator</a></li>
             </ul>
         </div>
     </nav>

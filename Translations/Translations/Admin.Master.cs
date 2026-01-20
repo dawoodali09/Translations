@@ -106,6 +106,7 @@ namespace Translations
             liCountryLanguages.Visible = isAdmin;
             liTranslatorLanguages.Visible = isAdmin;
             liTranslatorTranslations.Visible = isAdmin;
+            liResourceGenerator.Visible = isAdmin;
 
             // Translator pages - visible to all
             liTranslationKeys.Visible = true;
@@ -125,6 +126,7 @@ namespace Translations
             navTranslationKeys.Attributes.Remove("class");
             navTranslations.Attributes.Remove("class");
             navTranslatorTranslations.Attributes.Remove("class");
+            navResourceGenerator.Attributes.Remove("class");
 
             // Set active based on current page
             if (url.Contains("translators.aspx"))
@@ -143,6 +145,8 @@ namespace Translations
                 navTranslatorTranslations.Attributes.Add("class", "active");
             else if (url.Contains("translations.aspx") || url.Contains("translations2.aspx"))
                 navTranslations.Attributes.Add("class", "active");
+            else if (url.Contains("resourcegenerator.aspx"))
+                navResourceGenerator.Attributes.Add("class", "active");
         }
     }
 }

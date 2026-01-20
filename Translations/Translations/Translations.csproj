@@ -65,6 +65,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Countries.aspx" />
@@ -125,6 +128,7 @@
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\scripts.js" />
     <Content Include="Languages.aspx" />
+    <Content Include="ResourceGenerator.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
     <Content Include="css\fonts\caviardreams\CaviarDreams-webfont.eot" />
@@ -198,6 +202,13 @@
     </Compile>
     <Compile Include="Languages.aspx.designer.cs">
       <DependentUpon>Languages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceGenerator.aspx.cs">
+      <DependentUpon>ResourceGenerator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourceGenerator.aspx.designer.cs">
+      <DependentUpon>ResourceGenerator.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
