@@ -11,13 +11,13 @@
                         <%--<asp:LinkButton ID="btnAddNew" runat="server" CssClass="button_add" Style="color: #fff; float: right;" OnClick="btnAddNew_Click"> Add</asp:LinkButton>--%>
 
                     </div>
-                    <div style="float: left; margin: 0 20px; text-align: center; width: 95%">
+                    <div style="float: left; margin: 0; text-align: center; width: 100%">
                         <asp:Label runat="server" ID="lblTranslationDone" ForeColor="Red" Font-Bold="true"></asp:Label>
                         <asp:GridView ID="gvTranslatorTranslations" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_RowCommand" AllowPaging="true" PageSize="20" OnPageIndexChanging="gvTranslatorTranslations_PageIndexChanging"  CellPadding="4" ForeColor="Black" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                          <RowStyle CssClass="DataRow" />
                             <FooterStyle BackColor="#CCCC99" ForeColor="Black"></FooterStyle>
 
-                        <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                        <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
 
                         <PagerStyle HorizontalAlign="Right" BackColor="White" ForeColor="Black"></PagerStyle>
 
@@ -31,28 +31,33 @@
 
                         <SortedDescendingHeaderStyle BackColor="#242121" CssClass="GridHeader"></SortedDescendingHeaderStyle>
                         <Columns>
-                            <asp:BoundField DataField="TranslationKey.Key" HeaderText="Key" />
-                            <asp:BoundField DataField="Translated" HeaderText="Translated" />
-                            <%--<asp:BoundField DataField="CountryLanguage.Title" HeaderText="Language" />--%>
-                           <%-- <asp:BoundField DataField="TranslationKey.EnglishValue" HeaderText="English Text" />--%>
-                            <asp:TemplateField HeaderText="English Text" >
-                        <ItemTemplate >
-                            <%# Eval("TranslationKey.EnglishValue") != null ? GetEngTranslation(Eval("TranslationKey.EnglishValue").ToString()) : "" %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                            <asp:TemplateField HeaderText="English Text" >
-                        <ItemTemplate >
-                            <%# Eval("Value") != null ? GetEngTranslation(Eval("Value").ToString()) : "" %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                            <%--<asp:BoundField DataField="Created" HeaderText="Created" DataFormatString="{0:d}" />--%>
-                           <asp:TemplateField HeaderText="View">
-                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
-                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                            <asp:BoundField DataField="TranslationKey.Key" HeaderText="Key">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Translated" HeaderText="Translated" DataFormatString="{0:dd/MM/yyyy}">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="English Text">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
                                 <ItemTemplate>
-                                   <asp:LinkButton ID="lbtView" CssClass="btn btn-primary" runat="server" CommandName="viewrecord" Text="View" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
-                                  <%--  <a href='translations2.aspx?ID=<%#Eval("translationkeyid").ToString() %>' class="btn btn-primary" target="_self">UPDATE </a>--%>
-
+                                    <%# Eval("TranslationKey.EnglishValue") != null ? GetEngTranslation(Eval("TranslationKey.EnglishValue").ToString()) : "" %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Translation">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                                <ItemTemplate>
+                                    <%# Eval("Value") != null ? GetEngTranslation(Eval("Value").ToString()) : "" %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="View">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lbtView" CssClass="btn btn-primary" runat="server" CommandName="viewrecord" Text="View" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

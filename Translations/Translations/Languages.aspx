@@ -68,18 +68,18 @@
     <!-- Languages Grid -->
     <div class="five_sixth sidebar_right" id="divLanguages" runat="server">
         <aside>
-            <div style="float: left; margin:1px 3px 1px 1px; width:98.5%;">
+            <div style="float: left; margin: 0; width: 100%;">
                 <div class="nav_bg" style="width:100%;">
                     <h2 class="fl_left">Languages</h2>
                     <asp:LinkButton ID="btnAddNew" runat="server" CssClass="button_add" Style="color:#fff; float:right;" OnClick="btnAddNew_Click">Add</asp:LinkButton>
                 </div>
-                <div style="float: left; margin:0 20px; text-align:center; width:95%">
+                <div style="float: left; margin:0; text-align:center; width:100%">
                     <asp:GridView ID="gvLanguages" runat="server" AutoGenerateColumns="False" CellPadding="4" AllowPaging="true" PageSize="20"
                         OnPageIndexChanging="gvLanguages_PageIndexChanging" OnRowCommand="gvLanguages_RowCommand"
                         ForeColor="Black" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                         <RowStyle CssClass="DataRow" />
                         <FooterStyle BackColor="#3591cd" ForeColor="Black"></FooterStyle>
-                        <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                        <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
                         <PagerStyle HorizontalAlign="Right" BackColor="White" ForeColor="Black"></PagerStyle>
                         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" CssClass="yellow"></SelectedRowStyle>
                         <SortedAscendingCellStyle BackColor="#F7F7F7"></SortedAscendingCellStyle>
@@ -88,18 +88,32 @@
                         <SortedDescendingHeaderStyle BackColor="#242121" CssClass="GridHeader"></SortedDescendingHeaderStyle>
                         <PagerSettings Mode="NumericFirstLast" PageButtonCount="10" FirstPageText="First" LastPageText="Last" />
                         <Columns>
-                            <asp:BoundField DataField="Name" HeaderText="Name" />
-                            <asp:BoundField DataField="NativeName" HeaderText="Native Name" />
-                            <asp:BoundField DataField="Code" HeaderText="Code" />
-                            <asp:BoundField DataField="Note" HeaderText="Note" />
+                            <asp:BoundField DataField="Name" HeaderText="Name">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="NativeName" HeaderText="Native Name">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Code" HeaderText="Code">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Note" HeaderText="Note">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
+                            </asp:BoundField>
                             <asp:TemplateField HeaderText="Active">
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
                                 <ItemTemplate>
                                     <%# (bool)Eval("Active") ? "Yes" : "No" %>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Actions">
-                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
-                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                                <HeaderStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Left" />
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbtEdit" CssClass="btn btn-primary" runat="server" CommandName="editrecord"
                                         Text="Edit" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>

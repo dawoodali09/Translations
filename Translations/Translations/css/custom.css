@@ -490,9 +490,85 @@ border-color: #dadada #d2d2d2 #c5c5c5;
 	 font-size:12px;
 	 color:#333;
 	 font-weight:normal;
-	
+
 	 float:left;
      margin-top:29px;
      font-weight:bold;
      width:30%;
  }
+
+/* Grid 100% width and alignment fixes */
+.five_sixth.sidebar_right div[id$="divKeys"] > div:last-of-type,
+.five_sixth.sidebar_right div[id$="divTranslations"] > div:last-of-type,
+.five_sixth.sidebar_right div[id$="divCountryLanguages"] > div:last-of-type,
+.five_sixth.sidebar_right div[id$="divTranslators"] > div:last-of-type,
+.five_sixth.sidebar_right div[id$="divCountries"] > div:last-of-type,
+.five_sixth.sidebar_right div[id$="divLanguages"] > div:last-of-type {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* All GridViews 100% width */
+.GridView,
+table[id*="gv"],
+table[id*="GridView"] {
+    width: 100% !important;
+}
+
+/* GridView header and cell alignment - consistent left alignment */
+.GridView th,
+.GridView td,
+table[id*="gv"] th,
+table[id*="gv"] td,
+table[id*="GridView"] th,
+table[id*="GridView"] td,
+table th,
+table td {
+    text-align: left !important;
+    padding: 12px 15px !important;
+    vertical-align: middle !important;
+}
+
+/* First column styling */
+.GridView th:first-child,
+.GridView td:first-child,
+table[id*="gv"] th:first-child,
+table[id*="gv"] td:first-child {
+    padding-left: 20px !important;
+}
+
+/* Top margin for first form field in add/edit forms */
+.form-bg > .form_wraper_trs:first-child {
+    margin-top: 15px;
+}
+
+.form-bg > .form_wraper_trs:first-child .inputprop,
+.form-bg > .form_wraper_trs:first-child .inputprop-key {
+    margin-top: 40px;
+}
+
+.form-bg > .form_wraper_trs:first-child label,
+.form-bg > .form_wraper_trs:first-child .first,
+.form-bg > .form_wraper_trs:first-child .form_wraper_trs-trans2-label {
+    margin-top: 45px !important;
+}
+
+/* Form input styling with top margin */
+input[type="text"], input[type="password"], input[type="email"], select, textarea, .form-control, .dropdown_pro, .dropdown_pro2 {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: white;
+    margin-top: 10px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus, textarea:focus, .form-control:focus, .dropdown_pro:focus, .dropdown_pro2:focus {
+    border-color: #3591cd;
+    box-shadow: 0 0 0 3px rgba(53, 145, 205, 0.1);
+    outline: none;
+}

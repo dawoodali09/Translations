@@ -91,17 +91,17 @@
                 
 
               </div>
-             <div id="divKeys" runat="server" style="float: left; margin:1px 3px 1px 1px; width:98.5%;">
+             <div id="divKeys" runat="server" style="float: left; margin: 0; width: 100%;">
                    <div class="nav_bg" style="width:100%;">
                         <h2 class="fl_left">Translation Key</h2>
                         <asp:LinkButton ID="btnAddNew" CssClass="button_add" Style=" color:#fff; float:right;" runat="server" OnClick="btnAddNew_Click"> Add</asp:LinkButton>
                        </div>
-     <div style="float: left; margin:0 20px; text-align:center; width:95%">
+     <div style="float: left; margin:0; text-align:center; width:100%">
         <asp:GridView ID="gvKeys" runat="server" AutoGenerateColumns="False" AllowPaging="true" PageSize="20" OnPageIndexChanging="gvKeys_PageIndexChanging" 
             OnRowCommand="gv_RowCommand" CellPadding="4" ForeColor="Black" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
             <FooterStyle BackColor="#CCCC99" ForeColor="Black"></FooterStyle>
                              <RowStyle CssClass="DataRow" />
-                            <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                            <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
 
                             <PagerStyle HorizontalAlign="Right" BackColor="White" ForeColor="Black"></PagerStyle>
 
@@ -116,26 +116,30 @@
                             <SortedDescendingHeaderStyle BackColor="#242121" CssClass="GridHeader" ></SortedDescendingHeaderStyle>
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="10"  FirstPageText="First" LastPageText="Last" />
             <Columns>
-              
-                <asp:BoundField DataField="Key" HeaderText="Key" />
-              
-                 <asp:TemplateField HeaderText="English Text" >
-                        <ItemTemplate >
-                            <div>
-                            <%# Eval("EnglishValue") != null ? GetEngTranslation(Eval("EnglishValue").ToString()) : "" %>
-                                </div>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-              
-                <asp:BoundField DataField="Translator.FirstName" HeaderText="Added By" />
-              
+                <asp:BoundField DataField="Key" HeaderText="Key">
+                    <HeaderStyle HorizontalAlign="Left" />
+                    <ItemStyle HorizontalAlign="Left" />
+                </asp:BoundField>
+
+                <asp:TemplateField HeaderText="English Text">
+                    <HeaderStyle HorizontalAlign="Left" />
+                    <ItemStyle HorizontalAlign="Left" />
+                    <ItemTemplate>
+                        <%# Eval("EnglishValue") != null ? GetEngTranslation(Eval("EnglishValue").ToString()) : "" %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:BoundField DataField="Translator.FirstName" HeaderText="Added By">
+                    <HeaderStyle HorizontalAlign="Left" />
+                    <ItemStyle HorizontalAlign="Left" />
+                </asp:BoundField>
+
                 <asp:TemplateField HeaderText="Edit">
-                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
-                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                    <HeaderStyle HorizontalAlign="Left" />
+                    <ItemStyle HorizontalAlign="Left" />
                     <ItemTemplate>
                         <asp:LinkButton ID="lbtEdit" CssClass="btn btn-primary" runat="server" CommandName="editrecord" Text="Edit" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
-                        <asp:LinkButton ID="lbtnDelete" CssClass="btn btn-danger" runat="server" CommandName="deleterecord"  OnClientClick="if (!confirm('Are you sure you want delete?')) return false;" Text="Delete" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
-
+                        <asp:LinkButton ID="lbtnDelete" CssClass="btn btn-danger" runat="server" CommandName="deleterecord" OnClientClick="if (!confirm('Are you sure you want delete?')) return false;" Text="Delete" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

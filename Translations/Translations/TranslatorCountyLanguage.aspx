@@ -65,18 +65,18 @@
      <div class="five_sixth sidebar_right" id="divTranslators" runat="server">
           <aside>
               
-              <div id="divTranslatorCountryLanguages" runat="server" style="float: left; margin:1px 3px 1px 1px; width:98.5%;">
+              <div id="divTranslatorCountryLanguages" runat="server" style="float: left; margin: 0; width: 100%;">
                   <div class="nav_bg" style="width: 100%;">
                       <h2 class="fl_left">Translator Country Languages</h2>
                       <asp:LinkButton ID="btnAddNew" runat="server" CssClass="button_add" Style="color: #fff; float: right;" OnClick="btnAddNew_Click">Add</asp:LinkButton>
                   </div>
-                   <div style="float: left; margin:0 20px; text-align:center; width:95%">
+                   <div style="float: left; margin:0; text-align:center; width:100%">
                   <asp:GridView ID="gvTranslatorCountryLanguages" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_RowCommand" CellPadding="4" ForeColor="Black" GridLines="Horizontal" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px">
                       
                        <RowStyle CssClass="DataRow" />
                        <FooterStyle BackColor="#CCCC99" ForeColor="Black"></FooterStyle>
 
-                            <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                            <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
 
                             <PagerStyle HorizontalAlign="Right" BackColor="White" ForeColor="Black"></PagerStyle>
 
@@ -90,19 +90,23 @@
 
                             <SortedDescendingHeaderStyle BackColor="#242121" CssClass="GridHeader" ></SortedDescendingHeaderStyle>
                       <Columns>
-
-                         <%-- <asp:BoundField DataField="Id" HeaderText="Id" />--%>
-                           <asp:BoundField DataField="Translator.FirstName" HeaderText="Translator" />
-                          <asp:BoundField DataField="CountryLanguage.Title" HeaderText="Country Language" />                         
-                         <%-- <asp:BoundField DataField="Note" HeaderText="Note" />--%>
-                          <asp:BoundField DataField="Active" HeaderText="Active" />
-                          <%--<asp:BoundField DataField="Created" HeaderText="Created" />--%>
+                          <asp:BoundField DataField="Translator.FirstName" HeaderText="Translator">
+                              <HeaderStyle HorizontalAlign="Left" />
+                              <ItemStyle HorizontalAlign="Left" />
+                          </asp:BoundField>
+                          <asp:BoundField DataField="CountryLanguage.Title" HeaderText="Country Language">
+                              <HeaderStyle HorizontalAlign="Left" />
+                              <ItemStyle HorizontalAlign="Left" />
+                          </asp:BoundField>
+                          <asp:BoundField DataField="Active" HeaderText="Active">
+                              <HeaderStyle HorizontalAlign="Left" />
+                              <ItemStyle HorizontalAlign="Left" />
+                          </asp:BoundField>
                           <asp:TemplateField HeaderText="Edit">
-                              <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
-                              <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                              <HeaderStyle HorizontalAlign="Left" />
+                              <ItemStyle HorizontalAlign="Left" />
                               <ItemTemplate>
                                   <asp:LinkButton ID="lbtEdit" CssClass="btn btn-primary" runat="server" CommandName="editrecord" Text="Edit" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
-
                               </ItemTemplate>
                           </asp:TemplateField>
                       </Columns>

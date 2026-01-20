@@ -134,14 +134,14 @@
                         <asp:LinkButton ID="btnAddNew" runat="server" CssClass="button_add" Style="color: #fff; float: right;" OnClick="btnAddNew_Click"> Add</asp:LinkButton>
 
                     </div>
-                    <div style="float: left; margin: 0 20px; text-align: center; width: 95%">
+                    <div style="float: left; margin: 0; text-align: center; width: 100%">
                         <asp:GridView ID="gvTranslators" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="Black" GridLines="Horizontal" BackColor="White" 
                             BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" OnRowCommand="gv_RowCommand" OnSelectedIndexChanged="gvTranslators_SelectedIndexChanged">
                             <RowStyle CssClass="DataRow" />
                            
                             <FooterStyle BackColor="#3591cd" ForeColor="Black"></FooterStyle>
 
-                            <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                            <HeaderStyle BackColor="#3591cd" Font-Bold="True" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
 
                             <PagerStyle HorizontalAlign="Right" BackColor="White" ForeColor="Black"></PagerStyle>
 
@@ -155,26 +155,29 @@
 
                             <SortedDescendingHeaderStyle BackColor="#242121" CssClass="GridHeader"></SortedDescendingHeaderStyle>
                             <Columns>
-                                <%--<asp:Boundfield datafield="PostalCode" headertext="Postal Code"/>
-          <asp:Boundfield datafield="Country" headertext="Country"/>--%>
-                               <%-- <asp:BoundField DataField="FirstName" HeaderText="First Name" />
-                                <asp:BoundField DataField="LastName" HeaderText="Last Name" />--%>
-                                <asp:BoundField DataField="EmailAddress" HeaderText="Email" />
-                                <asp:BoundField DataField="ContactNo" HeaderText="Contact No" />
-                                <%--<asp:BoundField DataField="Active" HeaderText="Active" />--%>
-                                <asp:BoundField DataField="MobileNumber" HeaderText="Mobile No" />
-
-                                <asp:BoundField DataField="Role" HeaderText="Role" />
-
+                                <asp:BoundField DataField="EmailAddress" HeaderText="Email">
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="ContactNo" HeaderText="Contact No">
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="MobileNumber" HeaderText="Mobile No">
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Role" HeaderText="Role">
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:BoundField>
                                 <asp:TemplateField HeaderText="Edit">
-                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Top" />
-                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" />
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <ItemStyle HorizontalAlign="Left" />
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtEdit" CssClass="btn btn-primary" runat="server" CommandName="editrecord" Text="Edit" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
-
                                         <asp:LinkButton ID="lbtnDelete" CssClass="btn btn-danger confirmLink" runat="server" CommandName="deleterecord" OnClientClick="if (!confirm('Are you sure you want delete?')) return false;"
                                             Text="Delete" CommandArgument='<%#Eval("Id").ToString() %>'></asp:LinkButton>
-
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
