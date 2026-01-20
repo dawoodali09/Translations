@@ -27,7 +27,7 @@ namespace NewKeyEmails
             //{
             //    StringBuilder template = new StringBuilder();
             //    string body = string.Empty;
-            //    StreamReader sr = new StreamReader(@"D:\\Projects\\CIB-Pay\\Translations\\Utility\\Templates\\NewKeyEmail.txt");
+            //    StreamReader sr = new StreamReader(@"..\\..\\..\\Utility\\Templates\\NewKeyEmail.txt");
             //    template.Append(sr.ReadToEnd());
             //    sr.Close();
             //    body = template.ToString();
@@ -38,7 +38,7 @@ namespace NewKeyEmails
             //        sb.Append(key.Key + "<br><br>");
             //    }
             //    body = body.Replace("#KEYS#", sb.ToString());
-            //    //Utility.StaticFunctions.SendMail("arun@cib-lettercredit.com", body, "New Translations added");
+            //    //Utility.StaticFunctions.SendMail("admin@translations.local", body, "New Translations added");
             //    Utility.StaticFunctions.SendMail(t.EmailAddress, body, "New Translations added");
             //}
 
@@ -63,7 +63,7 @@ namespace NewKeyEmails
             {
                 StringBuilder template = new StringBuilder();
                 string body = string.Empty;
-                StreamReader sr = new StreamReader(@"D:\\Projects\\CIB-Pay\\Translations\\Utility\\Templates\\NewKeyEmail.txt");
+                StreamReader sr = new StreamReader(@"..\\..\\..\\Utility\\Templates\\NewKeyEmail.txt");
                 template.Append(sr.ReadToEnd());
                 sr.Close();
                 body = template.ToString();
@@ -78,7 +78,7 @@ namespace NewKeyEmails
                     }
 
                     body = body.Replace("#KEYS#", sb.ToString());
-                    //Utility.StaticFunctions.SendMail("arun@cib-lettercredit.com", body, "New Translations added");
+                    //Utility.StaticFunctions.SendMail("admin@translations.local", body, "New Translations added");
                     Utility.StaticFunctions.SendMail(t.EmailAddress, body, "New Translations added");
                 }
             }

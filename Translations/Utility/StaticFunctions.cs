@@ -21,11 +21,11 @@ namespace Utility
             string Password = string.Empty;
 
 
-            MailFrom = "noreply@cib-pay.com";
-            DisplayedName = "Translations";
+            MailFrom = "noreply@translations.local";
+            DisplayedName = "Translation Management System";
             Host = "smtp.emailsrvr.com";
-            UserName = "noreply@cib-pay.com";
-            Password = "cm45bike";
+            UserName = "noreply@translations.local";
+            Password = "changeme";
 
 
 
